@@ -1,0 +1,154 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" type="text/css" href="/public/stylesheets/form.css"/>
+  <script defer src="/public/js/frontendjs.js"></script>
+</head>
+
+<style>
+
+  body {
+    width: 90%;
+    margin: auto;
+    background-color:black;
+    color:white;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  input {
+    border: 1px solid rgb(247, 2, 2);
+    margin: .25rem;
+    box-shadow: 0 2px 2px rgb(250, 3, 3);
+    background-color:white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  * {box-sizing: border-box;}
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .topnav {
+    overflow: hidden;
+    background-color: red;
+  }
+
+  .topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .topnav a:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .topnav a.active {
+    background-color: red;
+    color: black;
+  }
+
+  .topnav .search-container {
+    float: right;
+  }
+
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+
+  .topnav .search-container button {
+    float: right;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .topnav .search-container button:hover {
+    background: #ccc;
+  }
+
+  @media screen and (max-width: 600px) {
+    .topnav .search-container {
+      float: none;
+    }
+    .topnav a, .topnav input[type=text], .topnav .search-container button {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+    .topnav input[type=text] {
+      border: 1px solid #ccc;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/login" id="authenticate-button"> Login </a>
+  <a href="/logout"> Logout </a>
+  <a href="/postimage"> Post Image </a>
+  <a href="/registration"> Registration </a>
+
+  <div class="search-container">
+    <form>
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+</div>
+
+
+
+  <h1>Photo App!</h1>
+
+<img src="https://hb.imgix.net/12d1d9ac840e649ca0d749b0e5d8b403d310b10e.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=ea7b42b6e2b1535675ccca94ba8c0b95"
+     width="700" height="400"/>
+
+<footer id="footer">
+  <span id="footer-name">Giovann P Fox 2020</span>
+  <a id="email-link" href="mailto:gfox@mail.sfsu.edu">Contact me</a>
+</footer>
+
+<script>
+
+  function runSearch(){
+    let searchTerm = document.getElementsByName('search').value;
+    let searchURL = 'http://localhost:3000/posts/search/'+searchTerm;
+    //console.log(searchURL);
+    fetch(searchURL)
+    .then((data) => data.json())
+    .then((dataAsObject) => {
+      console.log(dataAsObject);
+    })
+    .catch((err) => console.log(err));
+  }
+  document.getElementsByClassName('search-container').onclick = runSearch();
+
+</script>
+
+  </body>
+
+</html>
